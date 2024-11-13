@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.6)
+project(paving)
+enable_language(CUDA)
+add_compile_options()
+add_executable(paving src/paving.cu)
+install(TARGETS paving DESTINATION /usr/bin)
