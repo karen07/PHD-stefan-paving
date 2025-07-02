@@ -207,10 +207,10 @@ int main()
 
     ofstream file_out("out.txt");
 
-    for (int i = -30; i <= -30; i += 5) { //Температура градусы
-        for (int j = 30; j <= 30; j += 5) { //Размер см
-            for (int k = 10; k <= 10; k += 5) { //Температура пульпы
-                for (int d = -6; d <= -6; d += 3) { //Температура стенки
+    for (int i = -30; i <= -30; i += 5) { //Temperature degrees
+        for (int j = 30; j <= 30; j += 5) { //Size cm
+            for (int k = 10; k <= 10; k += 5) { //Pulp temperature
+                for (int d = -6; d <= -6; d += 3) { //Wall temperature
                     sphere_count_x = ceil(200.0 / j);
                     gpuErrchk(cudaMemcpyToSymbol(sphere_count_x_d, &sphere_count_x, sizeof(int)));
 
@@ -237,16 +237,16 @@ int main()
                                    problem_size_y / threadsPerBlock.y + 1,
                                    problem_size_z / threadsPerBlock.z + 1);
 
-                    file_out << "Температура брикета:" << briq_temp << "°C "
-                             << "Размер стороны брикета:" << j * 0.01 << "м "
-                             << "Температура пульпы:" << goo_temp << "°C "
-                             << "Температура стенки:" << bound_temp << "°C" << endl
-                             << "Время(часы)    Максимальная температура пульпы(°C)" << endl;
+                    file_out << "Briquette temperature:" << briq_temp << "C "
+                             << "Briquette side size:" << j * 0.01 << "m "
+                             << "Pulp temperature:" << goo_temp << "C "
+                             << "Wall temperature:" << bound_temp << "C" << endl
+                             << "Time(clock)    Maximum pulp temperature(C)" << endl;
 
-                    init<<<numBlocks, threadsPerBlock>>>(heat_array_old, heat_array_now);
+                    init<<<numBlocks, threadsPerBlock> > >(heat_array_old, heat_array_now);
 
                     for (int time = 0; time <= 168 / dt; time++) {
-                        solve<<<numBlocks, threadsPerBlock>>>(heat_array_now, heat_array_old);
+                        solve<<<numBlocks, threadsPerBlock> > >(heat_array_now, heat_array_old);
 
                         double *tmp = heat_array_now;
                         heat_array_now = heat_array_old;
