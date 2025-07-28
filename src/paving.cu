@@ -243,10 +243,10 @@ int main()
                              << "Wall temperature:" << bound_temp << "C" << endl
                              << "Time(clock)    Maximum pulp temperature(C)" << endl;
 
-                    init<<<numBlocks, threadsPerBlock> > >(heat_array_old, heat_array_now);
+                    init<<<numBlocks, threadsPerBlock>>>(heat_array_old, heat_array_now);
 
                     for (int time = 0; time <= 168 / dt; time++) {
-                        solve<<<numBlocks, threadsPerBlock> > >(heat_array_now, heat_array_old);
+                        solve<<<numBlocks, threadsPerBlock>>>(heat_array_now, heat_array_old);
 
                         double *tmp = heat_array_now;
                         heat_array_now = heat_array_old;
