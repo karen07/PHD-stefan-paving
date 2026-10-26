@@ -1,16 +1,17 @@
 # PHD Stefan paving
 
-This repository contains a CUDA solver for a three-dimensional Stefan problem with multiple briquettes arranged inside a larger volume.
-
-The model evolves a temperature field on a regular 3D grid, with separate initial temperatures for the briquettes and surrounding medium and temperature-dependent material properties around the phase transition. CUDA kernels perform the finite-difference update on the GPU.
-
-The program is research-oriented code with experiment parameters embedded directly in the source. It writes a text summary and VTK snapshots that can be inspected later with scientific-visualization tools.
+A CUDA solver for a three-dimensional Stefan problem involving multiple briquettes. It
+models heat transfer and phase change across the briquettes and surrounding material on a
+regular 3D grid.
 
 ## Описание
 
-Этот репозиторий содержит CUDA решатель трехмерной задачи Стефана с несколькими брикетами, расположенными внутри большего объема.
+CUDA-решатель трёхмерной задачи Стефана для системы из нескольких брикетов. Моделирует
+перенос тепла и фазовые переходы в брикетах и окружающем материале на регулярной трёхмерной
+сетке.
 
-Модель рассчитывает изменение температурного поля на регулярной трехмерной сетке с разными начальными температурами брикетов и окружающей среды и с зависящими от температуры свойствами материала в области фазового перехода. Ядра CUDA выполняют конечно-разностное обновление на GPU.
+Начальные температуры брикетов и окружающей среды различаются. В области фазового
+перехода учитываются зависящие от температуры свойства материала.
 
 Программа является исследовательским кодом с параметрами эксперимента, заданными непосредственно в исходниках. Она записывает текстовую сводку и снимки VTK, которые затем можно просматривать средствами научной визуализации.
 
